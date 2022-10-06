@@ -30,6 +30,7 @@ const Budget = ({
         color === EBackgroundColor.yellow && mainStyles.yellowBg,
         color === EBackgroundColor.lightBlue && mainStyles.lightBlueBg,
         color === EBackgroundColor.black && mainStyles.blackBg,
+        color === EBackgroundColor.green && mainStyles.greenBg,
         customContainerStyle,
       ]}>
       <Text style={[styles.text, customTextKeyStyle]}>{textKey}: </Text>

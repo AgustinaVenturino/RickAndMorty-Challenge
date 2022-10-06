@@ -1,4 +1,5 @@
 const regFindPage = '(page=[0-9]+)';
+const regFindEpisode = '(episode/)([0-9]+)';
 
 const getPageParam = (page: string) => {
   try {
@@ -10,4 +11,26 @@ const getPageParam = (page: string) => {
   }
 };
 
-export {getPageParam};
+const getEpisodesParam = (episodes: string[]) => {
+  let episodeParam = '';
+  const episodesNumber: string[] = findEpisodeNumber(episodes);
+  episodesNumber.forEach(episode => {
+    episodeParam != ''
+      ? (episodeParam = episodeParam + `,${episode}`)
+      : (episodeParam = episodeParam + `${episode}`);
+  });
+
+  return {episodeParam, numberOfEpisodes: episodesNumber.length};
+};
+
+const findEpisodeNumber = (episodes: string[]) => {
+  let episodesNumber: string[] = [];
+  episodes.forEach((episode: string) => {
+    const findEpisodeReg = new RegExp(regFindEpisode);
+    const resultsReg = findEpisodeReg.exec(episode);
+    resultsReg && episodesNumber.push(resultsReg[2]);
+  });
+  return episodesNumber;
+};
+
+export {getPageParam, getEpisodesParam};

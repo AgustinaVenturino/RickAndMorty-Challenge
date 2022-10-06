@@ -32,7 +32,7 @@ const Button = ({
         color === EBackgroundColor.yellow && mainStyles.yellowBg,
         color === EBackgroundColor.lightBlue && mainStyles.lightBlueBg,
         color === EBackgroundColor.black && mainStyles.blackBg,
-        color === EBackgroundColor.green && mainStyles.blackBg,
+        color === EBackgroundColor.green && mainStyles.greenBg,
         customStyles && customStyles,
       ]}
       onPress={onPress}>

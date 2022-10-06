@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
   blackBg: {
     backgroundColor: 'rgba(103, 103, 103, 0.81)',
   },
+  greenBg: {
+    backgroundColor: 'rgba(138, 237, 179, 0.81)',
+  },
   greenText: {
     color: '#8aedb3',
   },

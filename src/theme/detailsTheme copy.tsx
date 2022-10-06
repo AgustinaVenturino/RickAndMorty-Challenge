@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'rgba(0, 0, 0, 0.88)',
     flex: 1,
+    justifyContent: 'center',
   },
   containerImage: {
     flex: 1,
@@ -22,8 +23,7 @@ const styles = StyleSheet.create({
   },
   budgetContainer: {
     minWidth: '100%',
-    minHeight: 45,
-    maxHeight: 45,
+    minHeight: '12%',
     marginTop: 5,
   },
   infoContainer: {
