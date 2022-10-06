@@ -45,6 +45,14 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#8aedb3',
   },
+  episode: {
+    fontSize: 20,
+    color: '#8aedb3',
+    backgroundColor: 'rgba(0, 0, 0, 0.48)',
+    marginTop: 14,
+    paddingVertical: 10,
+    paddingLeft: 10,
+  },
 });
 
 export default styles;

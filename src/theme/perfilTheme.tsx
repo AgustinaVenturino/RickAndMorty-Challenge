@@ -1,9 +1,6 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-  },
   inputContainer: {
     flex: 1,
     backgroundColor: '#FFF',
@@ -18,16 +15,6 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: 'black',
     paddingLeft: 15,
-  },
-  button: {
-    width: 80,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#4169E1',
-    borderRadius: 40,
-    borderBottomEndRadius: 40,
-    marginTop: 10,
   },
   container: {
     flex: 1,

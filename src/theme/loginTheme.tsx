@@ -9,12 +9,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(70, 69, 70, 0.81)',
     borderRadius: 50,
     paddingHorizontal: 18,
-    // marginHorizontal: 30,
   },
-  backgroundImage: {
-    flex: 1,
-    justifyContent: 'center',
-  },
+  backgroundImage: {flex: 1, justifyContent: 'center'},
   title: {
     fontSize: 35,
     fontWeight: 'bold',

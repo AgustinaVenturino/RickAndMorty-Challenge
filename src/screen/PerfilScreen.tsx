@@ -3,10 +3,10 @@ import {AuthContext} from '../context/Auth/AuthContext';
 import {Text, Image, View, Keyboard, EmitterSubscription} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import useForm from '../hooks/useForm';
-import styles from '../theme/perfilTheme';
 import {UpdateUserData} from '../interfaces/authInterface';
-import Button from '../components/common/Button';
 import {EBackgroundColor} from '../enums/EStyles';
+import Button from '../components/common/Button';
+import styles from '../theme/perfilTheme';
 
 const PerfilScreen = () => {
   const {userData, updateUserData, successMessage, removeSuccessMessage} =
@@ -34,7 +34,7 @@ const PerfilScreen = () => {
       'keyboardDidHide',
       keyboardDidHide,
     );
-  }, []);
+  }, [userData]);
 
   const keyboardDidShow = () => {
     setKeyboardShown(true);

@@ -1,19 +1,11 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import styles from '../../theme/episodeListElementTheme';
 
 const EpisodeListElement = ({item: {item}}: any) => {
   return (
-    <View
-      style={{
-        backgroundColor: 'rgba(0, 0, 0, 0.18)',
-        marginBottom: 8,
-        paddingVertical: 10,
-        flex: 1,
-        justifyContent: 'space-between',
-      }}>
-      <Text style={{fontSize: 17, color: '#8aedb3', marginHorizontal: 10}}>
-        {item?.name}
-      </Text>
+    <View style={styles.container}>
+      <Text style={styles.text}>{item?.name}</Text>
     </View>
   );
 };

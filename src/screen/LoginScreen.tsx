@@ -34,7 +34,7 @@ const LoginScreen = () => {
 
   const logIn = () => {
     Keyboard.dismiss();
-    signUp({mail: email, password: 'Rnc.0987'});
+    signUp({mail: email, password: password});
   };
 
   return (

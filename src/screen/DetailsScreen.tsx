@@ -1,12 +1,10 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {View, Text, Image, StatusBar} from 'react-native';
-import {FlatList, ScrollView} from 'react-native-gesture-handler';
+import React, {useContext, useEffect} from 'react';
+import {View, Text, Image} from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
 import Budget from '../components/common/Budget';
-import Button from '../components/common/Button';
 import EpisodeListElement from '../components/common/EpisodeListElement';
 import RickMortyContext from '../context/RickandMorty/RickMortyContext';
 import {EBackgroundColor} from '../enums/EStyles';
-import {EpisodesResult} from '../interfaces/rickMortyInterface';
 import styles from '../theme/detailsTheme';
 import LoadingScreen from './LoadingScreen';
 
@@ -23,15 +21,13 @@ const DetailsScreen = ({route}: {route: any}) => {
       type,
       location,
       origin,
-      episode,
     },
   } = route.params;
-  // const {character} = route.params;
 
   const {getEpisodes, currentEpisodes} = useContext(RickMortyContext);
   console.log(typeof currentEpisodes);
 
-  if (currentEpisodes.lenght > 0) console.log(currentEpisodes);
+  if (currentEpisodes.lenght > 0) return <LoadingScreen />;
 
   useEffect(() => {
     getEpisodes(character);
@@ -130,14 +126,7 @@ const DetailsScreen = ({route}: {route: any}) => {
       </View>
       {currentEpisodes && (
         <Text
-          style={{
-            fontSize: 20,
-            color: '#8aedb3',
-            backgroundColor: 'rgba(0, 0, 0, 0.48)',
-            marginTop: 14,
-            paddingVertical: 10,
-            paddingLeft: 10,
-          }}>
+          style={styles.episode}>
           Episodes
         </Text>
       )}

@@ -2,7 +2,6 @@ import React, {createContext, useReducer} from 'react';
 import rickAndMortyApi from '../../api/rickAndMortyApi';
 import {getPageParam, getEpisodesParam} from '../../helpers/pagination';
 import {
-  EpisodesResult,
   Result,
   RickAndMortyResponse,
 } from '../../interfaces/rickMortyInterface';

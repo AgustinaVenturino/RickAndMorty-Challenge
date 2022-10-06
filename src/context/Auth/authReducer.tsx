@@ -43,7 +43,6 @@ export const authReducer = (
         ...state,
         successMessage: '',
       };
-
     case 'signUp':
       return {
         ...state,

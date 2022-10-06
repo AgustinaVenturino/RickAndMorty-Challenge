@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {EAsyncStorageKeys} from '../interfaces/authInterface';
+import {EAsyncStorageKeys} from '../enums/EAuth';
 
 const storeData = async (key: string, value: string) => {
   try {

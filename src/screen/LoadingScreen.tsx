@@ -27,21 +27,14 @@ const LoadingScreen = () => {
           ]}
           source={require(image)}
         />
-        <Text
-          style={{
-            fontSize: 28,
-            textAlign: 'center',
-            margin: 10,
-          }}>
-          Loading..
-        </Text>
+        <Text style={styles.text}>Loading..</Text>
       </Animated.View>
     </View>
   );
 };
 export default () => {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <View style={styles.container}>
       <LoadingScreen />
     </View>
   );

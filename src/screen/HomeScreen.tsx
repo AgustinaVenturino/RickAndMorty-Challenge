@@ -1,10 +1,9 @@
 import {StackScreenProps} from '@react-navigation/stack';
 import React, {useContext, useEffect} from 'react';
-import {View, ImageBackground, Text} from 'react-native';
+import {View, ImageBackground} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import Button from '../components/common/Button';
 import CharacterPoster from '../components/common/CharacterPoster';
-import {AuthContext} from '../context/Auth/AuthContext';
 import RickMortyContext from '../context/RickandMorty/RickMortyContext';
 import {scrollToTop} from '../helpers/scroll';
 import {Result} from '../interfaces/rickMortyInterface';
@@ -15,9 +14,7 @@ interface Props extends StackScreenProps<any, any> {}
 const HomeScreen = ({navigation}: Props) => {
   const backgroundUrl = '../assets/6538958_1459.jpg';
   const scrollRef = React.createRef<ScrollView>();
-  const {userId} = useContext(AuthContext);
-
-  const {characters, getCharacters, prevPage, nextPage, pages} =
+  const {characters, getCharacters, prevPage, nextPage} =
     useContext(RickMortyContext);
 
   useEffect(() => {
@@ -44,7 +41,6 @@ const HomeScreen = ({navigation}: Props) => {
         resizeMode="cover"
         style={styles.backgroundImage}>
         <View style={styles.container}>
-          <Text>{JSON.stringify(userId, null, 5)}</Text>
           {characters.length > 0 &&
             characters.map(character => (
               <View key={character.id} style={styles.characterContainer}>

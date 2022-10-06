@@ -4,7 +4,6 @@ export interface RickAndMortyResponse {
   info: Info;
   results: Result[];
 }
-
 export interface Info {
   count: number;
   pages: number;
@@ -20,7 +19,6 @@ export interface EpisodesResult {
   url: string;
   created: string;
 }
-
 export interface Result {
   id: number;
   name: string;
@@ -35,14 +33,6 @@ export interface Result {
   url: string;
   created: Date;
 }
-export interface SimpleCharacter {
-  id: number;
-  name: string;
-  species: Species;
-  image: string;
-  url: string;
-}
-
 export interface Location {
   name: string;
   url: string;

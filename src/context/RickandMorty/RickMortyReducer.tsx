@@ -1,4 +1,4 @@
-import {EpisodesResult, Result} from '../../interfaces/rickMortyInterface';
+import {Result} from '../../interfaces/rickMortyInterface';
 
 export interface RickMortyState {
   characters: Result[];
