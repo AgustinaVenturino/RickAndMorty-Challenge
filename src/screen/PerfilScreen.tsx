@@ -9,8 +9,13 @@ import Button from '../components/common/Button';
 import styles from '../theme/perfilTheme';
 
 const PerfilScreen = () => {
-  const {userData, updateUserData, successMessage, removeSuccessMessage} =
-    useContext(AuthContext);
+  const {
+    userData,
+    updateUserData,
+    validateUser,
+    successMessage,
+    removeSuccessMessage,
+  } = useContext(AuthContext);
   const {name, surname, phone, age, onChange} = useForm({
     name: userData?.name || '',
     surname: userData?.surname || '',
@@ -26,6 +31,9 @@ const PerfilScreen = () => {
     // setTimeout(() => {
     //   removeSuccessMessage();
     // }, 20);
+    if (!userData) {
+      getUserData();
+    }
     keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
       keyboardDidShow,
@@ -35,7 +43,9 @@ const PerfilScreen = () => {
       keyboardDidHide,
     );
   }, [userData]);
-
+  const getUserData = () => {
+    validateUser();
+  };
   const keyboardDidShow = () => {
     setKeyboardShown(true);
   };
@@ -62,14 +72,16 @@ const PerfilScreen = () => {
               style={styles.avatarImage}
               source={require('../assets/avatarperfil.png')}
             />
-            <View style={{flexDirection: 'row'}}>
-              <Text style={{...styles.title, fontSize: 30}}>
-                {userData?.name + ' '}
-              </Text>
-              <Text style={{...styles.title, fontSize: 30}}>
-                {userData?.surname}
-              </Text>
-            </View>
+            {userData && (
+              <View style={{flexDirection: 'row'}}>
+                <Text style={{...styles.title, fontSize: 30}}>
+                  {userData?.name + ' '}
+                </Text>
+                <Text style={{...styles.title, fontSize: 30}}>
+                  {userData?.surname}
+                </Text>
+              </View>
+            )}
           </View>
         )}
         <View style={styles.row}>
