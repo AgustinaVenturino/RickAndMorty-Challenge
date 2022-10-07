@@ -1,39 +1,33 @@
 import React, {useContext, useEffect, useState} from 'react';
+import {useForm, Controller} from 'react-hook-form';
 import {AuthContext} from '../context/Auth/AuthContext';
 import {Text, Image, View, Keyboard, EmitterSubscription} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
-import useForm from '../hooks/useForm';
 import {UpdateUserData} from '../interfaces/authInterface';
 import {EBackgroundColor} from '../enums/EStyles';
 import Button from '../components/common/Button';
 import styles from '../theme/perfilTheme';
 
 const PerfilScreen = () => {
+  const {userData, updateUserData} = useContext(AuthContext);
   const {
-    userData,
-    updateUserData,
-    validateUser,
-    successMessage,
-    removeSuccessMessage,
-  } = useContext(AuthContext);
-  const {name, surname, phone, age, onChange} = useForm({
-    name: userData?.name || '',
-    surname: userData?.surname || '',
-    phone: userData?.phone || '',
-    age: userData?.age || '',
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm<UpdateUserData>({
+    defaultValues: {
+      name: userData?.name || '',
+      surname: userData?.surname || '',
+      phone: userData?.phone || '',
+      age: userData?.age || '',
+    },
   });
+  const onSubmit = (data: UpdateUserData) => updateUserData(data);
+
   const [keyboardShown, setKeyboardShown] = useState(false);
   let keyboardDidShowListener: EmitterSubscription,
     keyboardDidHideListener: EmitterSubscription;
   useEffect(() => {
-    // if (successMessage?.length === 0) return;
-    // Alert.alert('Update User Information', successMessage, []);
-    // setTimeout(() => {
-    //   removeSuccessMessage();
-    // }, 20);
-    if (!userData) {
-      getUserData();
-    }
     keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
       keyboardDidShow,
@@ -43,24 +37,12 @@ const PerfilScreen = () => {
       keyboardDidHide,
     );
   }, [userData]);
-  const getUserData = () => {
-    validateUser();
-  };
+
   const keyboardDidShow = () => {
     setKeyboardShown(true);
   };
   const keyboardDidHide = () => {
     setKeyboardShown(false);
-  };
-
-  const handleOnUpdate = () => {
-    const newUserData: UpdateUserData = {
-      name,
-      surname,
-      phone,
-      age,
-    };
-    updateUserData(newUserData);
   };
 
   return (
@@ -86,49 +68,89 @@ const PerfilScreen = () => {
         )}
         <View style={styles.row}>
           <Text style={styles.subTitle}>Name:</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Name"
-            onChangeText={value => onChange(value, 'name')}
-            value={name}
-            onSubmitEditing={Keyboard.dismiss}
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+              minLength: 1,
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <TextInput
+                style={styles.input}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                onSubmitEditing={Keyboard.dismiss}
+              />
+            )}
+            name="name"
           />
         </View>
         <View style={styles.row}>
           <Text style={styles.subTitle}>Surname:</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Surname"
-            onChangeText={value => onChange(value, 'surname')}
-            value={surname}
-            onSubmitEditing={Keyboard.dismiss}
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+              minLength: 1,
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <TextInput
+                style={styles.input}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                onSubmitEditing={Keyboard.dismiss}
+              />
+            )}
+            name="surname"
           />
         </View>
         <View style={styles.row}>
           <Text style={styles.subTitle}>Phone:</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Phone"
-            onChangeText={value => onChange(value, 'phone')}
-            value={phone}
-            onSubmitEditing={Keyboard.dismiss}
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+              minLength: 1,
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <TextInput
+                style={styles.input}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                onSubmitEditing={Keyboard.dismiss}
+              />
+            )}
+            name="phone"
           />
         </View>
         <View style={styles.row}>
           <Text style={styles.subTitle}>Age:</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Age"
-            onChangeText={value => onChange(value, 'age')}
-            value={age}
-            onSubmitEditing={Keyboard.dismiss}
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+              minLength: 1,
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <TextInput
+                style={styles.input}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                onSubmitEditing={Keyboard.dismiss}
+              />
+            )}
+            name="age"
           />
         </View>
         <View style={styles.buttonContainer}>
           <Button
             title="Actualizar"
             color={EBackgroundColor.lightBlue}
-            onPress={handleOnUpdate}
+            onPress={handleSubmit(onSubmit)}
           />
         </View>
         {!keyboardShown && (

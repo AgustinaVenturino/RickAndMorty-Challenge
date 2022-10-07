@@ -9,6 +9,7 @@ import {scrollToTop} from '../helpers/scroll';
 import {Result} from '../interfaces/rickMortyInterface';
 import styles from '../theme/homeTheme';
 import {EBackgroundColor} from '../enums/EStyles';
+import {AuthContext} from '../context/Auth/AuthContext';
 
 interface Props extends StackScreenProps<any, any> {}
 const HomeScreen = ({navigation}: Props) => {
@@ -16,9 +17,13 @@ const HomeScreen = ({navigation}: Props) => {
   const scrollRef = React.createRef<ScrollView>();
   const {characters, getCharacters, prevPage, nextPage} =
     useContext(RickMortyContext);
+  const {validateUser, userData} = useContext(AuthContext);
 
   useEffect(() => {
     getCharacters();
+    if (!userData) {
+      validateUser();
+    }
   }, []);
 
   const goToDetails = (character: Result) => {

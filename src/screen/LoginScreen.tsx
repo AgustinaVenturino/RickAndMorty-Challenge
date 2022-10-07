@@ -1,4 +1,5 @@
 import React, {useContext, useEffect} from 'react';
+import {useForm, Controller} from 'react-hook-form';
 import {
   ImageBackground,
   Text,
@@ -10,17 +11,26 @@ import {
 import Button from '../components/common/Button';
 import {AuthContext} from '../context/Auth/AuthContext';
 import {EBackgroundColor} from '../enums/EStyles';
-import useForm from '../hooks/useForm';
+import {LoginData} from '../interfaces/authInterface';
 import styles from '../theme/loginTheme';
 
 const LoginScreen = () => {
   const {signUp, errorMessage, removeError} = useContext(AuthContext);
   const backgroundUrl = '../assets/rickandmorty.png';
-
-  const {email, password, onChange} = useForm({
-    email: '',
-    password: '',
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm<LoginData>({
+    defaultValues: {
+      mail: '',
+      password: '',
+    },
   });
+  const onSubmit = (data: LoginData) => {
+    Keyboard.dismiss();
+    signUp(data);
+  };
 
   useEffect(() => {
     if (errorMessage.length === 0) return;
@@ -32,11 +42,6 @@ const LoginScreen = () => {
     ]);
   }, [errorMessage]);
 
-  const logIn = () => {
-    Keyboard.dismiss();
-    signUp({mail: email, password: password});
-  };
-
   return (
     <>
       <ImageBackground
@@ -44,29 +49,51 @@ const LoginScreen = () => {
         resizeMode="cover"
         style={styles.backgroundImage}>
         <View style={styles.container}>
-          <Text style={styles.title}>BIENVENIDO</Text>
-          <TextInput
-            style={styles.input}
-            placeholderTextColor="white"
-            placeholder="Email"
-            textContentType="emailAddress"
-            keyboardType="email-address"
-            onChangeText={value => onChange(value, 'email')}
-            value={email}
+          <Text style={styles.title}>WELCOME</Text>
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+              minLength: 1,
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <TextInput
+                style={styles.input}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                onSubmitEditing={Keyboard.dismiss}
+                placeholderTextColor="white"
+                placeholder="Email"
+                textContentType="emailAddress"
+              />
+            )}
+            name="mail"
           />
-          <TextInput
-            style={styles.input}
-            placeholderTextColor="white"
-            placeholder="Contraseña"
-            textContentType="password"
-            secureTextEntry
-            onChangeText={value => onChange(value, 'password')}
-            value={password}
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+              minLength: 1,
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <TextInput
+                style={styles.input}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                onSubmitEditing={Keyboard.dismiss}
+                placeholderTextColor="white"
+                placeholder="Password"
+                secureTextEntry
+              />
+            )}
+            name="password"
           />
           <Button
             color={EBackgroundColor.lightBlue}
             title="Iniciar Sesion"
-            onPress={logIn}
+            onPress={handleSubmit(onSubmit)}
           />
         </View>
       </ImageBackground>
