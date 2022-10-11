@@ -2,6 +2,7 @@ import React, {useRef, useEffect} from 'react';
 import {View, Image, Text, Animated} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Status} from '../../enums/ERickMorty';
+import fadeIn from '../../helpers/animations';
 import {Result} from '../../interfaces/rickMortyInterface';
 import styles from '../../theme/characterPosterTheme';
 
@@ -19,18 +20,8 @@ const CharacterPoster = ({
   const backgroundUrl = '../../assets/galaxy_background.jpg';
   const opacity = useRef(new Animated.Value(0)).current;
 
-  const fadeIn = () => {
-    Animated.loop(
-      Animated.timing(opacity, {
-        toValue: 1,
-        duration: 9000,
-        useNativeDriver: true,
-      }),
-    ).start();
-  };
-
   useEffect(() => {
-    fadeIn();
+    fadeIn(opacity, 9000);
   }, []);
 
   return (

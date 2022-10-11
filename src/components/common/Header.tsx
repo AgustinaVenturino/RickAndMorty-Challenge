@@ -15,7 +15,7 @@ interface IHeaderProps {
   containerStyle?: StyleProp<ViewStyle> | undefined;
   textStyle?: StyleProp<ViewStyle> | undefined;
   imageStyle?: StyleProp<ImageStyle> | undefined;
-  requireImg: ImageSourcePropType | undefined;
+  requireImg?: ImageSourcePropType | undefined;
 }
 const Header = ({
   withImage,

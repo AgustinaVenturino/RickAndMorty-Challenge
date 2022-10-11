@@ -9,7 +9,7 @@ const LoadingScreen = () => {
   const opacity = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    fadeIn(opacity);
+    fadeIn(opacity, 820);
   }, []);
 
   return (

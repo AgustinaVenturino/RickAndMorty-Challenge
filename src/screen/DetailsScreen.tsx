@@ -25,9 +25,6 @@ const DetailsScreen = ({route}: {route: any}) => {
   } = route.params;
 
   const {getEpisodes, currentEpisodes} = useContext(RickMortyContext);
-  console.log(typeof currentEpisodes);
-
-  if (currentEpisodes.lenght > 0) return <LoadingScreen />;
 
   useEffect(() => {
     getEpisodes(character);
